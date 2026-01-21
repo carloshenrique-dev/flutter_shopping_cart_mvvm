@@ -4,6 +4,7 @@ A shopping cart application built with Flutter following the MVVM architecture p
 
 ## Demo
 
+![shopping-cart](https://github.com/user-attachments/assets/01b70898-27a5-460a-930f-644264ff02f1)
 
 
 ## Requirements
