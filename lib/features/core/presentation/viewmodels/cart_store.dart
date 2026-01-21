@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../features/cart/domain/models/cart.dart';
-import '../../../features/cart/domain/models/cart_item.dart';
-import '../../../features/catalog/domain/models/product.dart';
+import '../../../cart/domain/models/cart.dart';
+import '../../../cart/domain/models/cart_item.dart';
+import '../../../catalog/domain/models/product.dart';
 
 class CartStore extends ChangeNotifier {
   static const maxDifferentProducts = 10;
@@ -15,7 +15,11 @@ class CartStore extends ChangeNotifier {
     final existingItem = _cart.items
         .where((item) => item.product.id == product.id)
         .firstOrNull;
-    if (existingItem != null) return true;
+
+    if (existingItem != null) {
+      return true;
+    }
+
     return _cart.itemCount < maxDifferentProducts;
   }
 
@@ -27,7 +31,9 @@ class CartStore extends ChangeNotifier {
   }
 
   void addProduct(Product product) {
-    if (!canAddProduct(product)) return;
+    if (!canAddProduct(product)) {
+      return;
+    }
 
     final items = List<CartItem>.from(_cart.items);
     final index = items.indexWhere((item) => item.product.id == product.id);

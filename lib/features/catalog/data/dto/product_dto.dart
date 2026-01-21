@@ -1,13 +1,6 @@
 import '../../domain/models/product.dart';
 
 class ProductDto {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final String category;
-  final String image;
-
   const ProductDto({
     required this.id,
     required this.title,
@@ -16,6 +9,13 @@ class ProductDto {
     required this.category,
     required this.image,
   });
+
+  final int id;
+  final String title;
+  final double price;
+  final String description;
+  final String category;
+  final String image;
 
   factory ProductDto.fromJson(Map<String, dynamic> json) {
     return ProductDto(

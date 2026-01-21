@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/viewmodels/cart_store.dart';
+import '../../../core/presentation/viewmodels/cart_store.dart';
 import '../../domain/models/cart_item.dart';
+import '../strings/cart_strings.dart';
 import '../viewmodels/cart_viewmodel.dart';
 
-class CartItemCard extends StatelessWidget {
+final class CartItemCard extends StatelessWidget {
   final CartItem item;
   final bool isRemoving;
 
@@ -18,6 +19,7 @@ class CartItemCard extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
+      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
@@ -45,12 +47,12 @@ class CartItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\$${item.product.price.toStringAsFixed(2)}',
+                    CartStrings.priceFormat(item.product.price),
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Subtotal: \$${item.subtotal.toStringAsFixed(2)}',
+                    CartStrings.subtotalFormat(item.subtotal),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
@@ -89,7 +91,7 @@ class CartItemCard extends StatelessWidget {
                         )
                       : const Icon(Icons.delete_outline, color: Colors.red),
                   label: Text(
-                    'Remove',
+                    CartStrings.removeButton,
                     style: TextStyle(
                       color: isRemoving ? Colors.grey : Colors.red,
                     ),

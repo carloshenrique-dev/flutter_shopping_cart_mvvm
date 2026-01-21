@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../core/domain/models/checkout_state.dart';
 import '../../data/services/checkout_api.dart';
 import '../../../cart/domain/models/cart.dart';
 import '../../../cart/domain/models/cart_item.dart';
-
-enum CheckoutState { initial, processing, success, error }
+import '../../domain/models/checkout_result.dart';
 
 class CheckoutViewModel extends ChangeNotifier {
   final CheckoutApi _api;
@@ -36,6 +36,9 @@ class CheckoutViewModel extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  double get subtotal =>
+      _orderItems.fold(0.0, (sum, item) => sum + item.subtotal);
 
   void reset() {
     _state = CheckoutState.initial;

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/viewmodels/cart_store.dart';
+import '../../../core/domain/models/checkout_state.dart';
+import '../../../core/presentation/viewmodels/cart_store.dart';
 import '../../../checkout/presentation/viewmodels/checkout_viewmodel.dart';
+import '../strings/cart_strings.dart';
 
 final class OrderSummary extends StatelessWidget {
   final double subtotal;
@@ -29,9 +31,12 @@ final class OrderSummary extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Subtotal:', style: TextStyle(fontSize: 16)),
+                const Text(
+                  CartStrings.subtotalLabel,
+                  style: TextStyle(fontSize: 16),
+                ),
                 Text(
-                  '\$${subtotal.toStringAsFixed(2)}',
+                  CartStrings.priceFormat(subtotal),
                   style: const TextStyle(fontSize: 16),
                 ),
               ],
@@ -41,11 +46,11 @@ final class OrderSummary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Total:',
+                  CartStrings.totalLabel,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '\$${subtotal.toStringAsFixed(2)}',
+                  CartStrings.priceFormat(subtotal),
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -84,6 +89,7 @@ final class OrderSummary extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: Colors.green,
                       foregroundColor: Colors.white,
+                      elevation: 0,
                     ),
                     child: isProcessing
                         ? const SizedBox(
@@ -95,7 +101,7 @@ final class OrderSummary extends StatelessWidget {
                             ),
                           )
                         : const Text(
-                            'Checkout',
+                            CartStrings.checkoutButton,
                             style: TextStyle(fontSize: 18),
                           ),
                   );
