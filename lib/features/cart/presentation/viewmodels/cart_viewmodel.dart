@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../data/services/cart_api.dart';
-import '../../../../core/presentation/viewmodels/cart_store.dart';
+import '../../../core/presentation/viewmodels/cart_store.dart';
 import '../../domain/models/cart_item.dart';
 
 class CartViewModel extends ChangeNotifier {

@@ -1,0 +1,1 @@
+export 'presentation/views/cart_view.dart';

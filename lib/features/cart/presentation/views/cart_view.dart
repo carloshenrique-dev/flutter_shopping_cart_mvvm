@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/viewmodels/cart_store.dart';
+import '../../../core/presentation/viewmodels/cart_store.dart';
+import '../strings/cart_strings.dart';
 import '../viewmodels/cart_viewmodel.dart';
 import '../widgets/cart_item_card.dart';
 import '../widgets/order_summary.dart';
 
-class CartView extends StatelessWidget {
+final class CartView extends StatelessWidget {
   const CartView({super.key});
 
   @override
@@ -14,7 +15,7 @@ class CartView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CartViewModel(cartStore: context.read<CartStore>()),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Cart')),
+        appBar: AppBar(title: const Text(CartStrings.appBarTitle)),
         body: Consumer2<CartStore, CartViewModel>(
           builder: (context, cartStore, cartViewModel, child) {
             if (cartViewModel.errorMessage != null) {
@@ -24,10 +25,11 @@ class CartView extends StatelessWidget {
                     content: Text(cartViewModel.errorMessage!),
                     backgroundColor: Colors.red,
                     action: SnackBarAction(
-                      label: 'Dismiss',
+                      label: CartStrings.dismissAction,
                       textColor: Colors.white,
                       onPressed: () => cartViewModel.clearError(),
                     ),
+                    duration: Duration(seconds: 2),
                   ),
                 );
                 cartViewModel.clearError();
@@ -48,7 +50,7 @@ class CartView extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Your cart is empty',
+                      CartStrings.emptyCartMessage,
                       style: TextStyle(fontSize: 18, color: Colors.grey),
                     ),
                   ],
